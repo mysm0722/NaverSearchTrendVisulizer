@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <p align="center"><b><font size="20">2017/10 Mobile Device Trend</font></b></p>
 <!-- axios:ajax -->
+<!-- Ajax 통신을 위한 axios 라이브러리 사용 -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <!-- axios:ajax -->
 
 <script>
 
+  // NAVER Search Trend API Data 수집을 위한 Node 서버 호출
+  // CORS 설정으로 인해 Visualizatino HTML 파일에서 직접 데이터 호출을
+  // 우회하기 위한 방법
   var api_url = 'http://localhost:3000/search';
   
   axios({
@@ -21,17 +25,15 @@
       console.log(error);
     });
   
-  </script>
+</script>
 
+<!-- d3.js 호출을 위한 선언-->
 <p align="center">
 <svg width="960" height="960" font-family="sans-serif" font-size="10" text-anchor="middle"></svg>
 </p>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
-
-
-
-
+<!-- d3.js Bubble Chart 호출을 위한 라이브러리-->
 <script>
 
 var svg = d3.select("svg"),
@@ -39,13 +41,13 @@ var svg = d3.select("svg"),
     height = +svg.attr("height");
 
 var format = d3.format(",d");
-
 var color = d3.scaleOrdinal(d3.schemeCategory20c);
-
 var pack = d3.pack()
     .size([width, height])
     .padding(1.5);
 
+// NAVER Search Trend API 호출 결과 파일을 Local에 Node JS를 통해 저장하고,
+// Visualizer에서 호출하여 Chart를 생성합니다.
 d3.csv("flare.csv", function(d) {
   d.value = +d.value;
   if (d.value) return d;

@@ -20,8 +20,8 @@ app.get('/search', function (req, res) {
     var request = require('request');
 
     // Client ID, Secret Key
-    var client_id = 'Bx3k9QA02ShYeDVyLQpf';
-    var client_secret = 'DvfCZekAZs';
+    var client_id = '{YOUR_NCP_CLIENT_ID}';
+    var client_secret = '{YOUR_NCP_SECRET_KEY}';
 
     // NAVER Trend API URL 
     var api_url = 'https://openapi.naver.com/v1/datalab/search';
